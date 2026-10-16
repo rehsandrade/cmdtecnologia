@@ -22,3 +22,16 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}html.motion-enabled .reveal:not(.is-visible){opacity:1;transform:none}}
 
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* Arquivos oficiais preservados. O enquadramento desconsidera apenas as margens
+   transparentes do PNG da CMD, sem filtros, distorção ou recorte da marca. */
+.brand.has-image{position:relative;width:160px;height:76px;overflow:hidden}
+.brand.has-image img{position:absolute;width:320px;height:auto;max-width:none;left:50%;top:50%;transform:translate(-50%,-50%);object-fit:contain}
+.footer-brand.has-image{width:185px;height:105px;padding:0}
+.footer-brand.has-image img{width:400px}
+.client-mark img{object-fit:cover}
+.client-mark[data-client="north"] img{object-fit:contain}
+.client-mark[data-client="a3"]{background:var(--dark);border-color:var(--dark);padding:10px}
+.client-mark[data-client="a3"] img{width:110px;height:110px;object-fit:contain}
+@media(max-width:992px){.header .brand.has-image{height:68px}.header .brand.has-image img{width:285px}}
+@media(max-width:768px){.header .brand.has-image{width:145px;height:62px}.header .brand.has-image img{width:265px}.client-mark[data-client="a3"] img{width:92px;height:92px}}

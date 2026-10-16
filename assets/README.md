@@ -1,6 +1,6 @@
 # Arquivos visuais
 
-Coloque os arquivos originais nesta pasta e configure seus caminhos em `CMD_CONFIG.images`, no início de `script.js`.
+Os seis logos originais de `Logos.zip` já estão nesta pasta e configurados em `CMD_CONFIG.images`, no início de `script.js`. Somente os banners desktop e mobile continuam pendentes. Os arquivos dos logos foram preservados sem modificação.
 
 | Foto na conversa | Uso | Nome de arquivo sugerido | Campo em `images` |
 | --- | --- | --- | --- |
@@ -15,4 +15,4 @@ Coloque os arquivos originais nesta pasta e configure seus caminhos em `CMD_CONF
 
 As dimensões informadas correspondem às imagens exibidas no chat; confirme nos arquivos originais. PNG, WebP e JPEG funcionam, desde que os caminhos configurados incluam a extensão correta. Preserve transparência e cores dos logos. Remova margens transparentes excessivas apenas em uma cópia preparada com cuidado, mantendo os originais.
 
-Até os arquivos serem fornecidos, os campos ficam vazios para não gerar requisições a imagens inexistentes. A imagem de data center já disponível está em `../2.png` e foi preservada.
+Os campos dos banners ficam vazios até os dois arquivos serem fornecidos, evitando requisições a imagens inexistentes. A imagem de data center já disponível está em `../2.png` e foi preservada.

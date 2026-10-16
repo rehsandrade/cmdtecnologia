@@ -10,6 +10,8 @@ cmdtecnologia/
 ├── style.css             # Layout, cores, fontes e responsividade
 ├── script.js             # Configuração e interações
 ├── 2.png                 # Data center original do repositório, preservado
+├── visualizacao.html     # Site interativo em arquivo único, com imagens e fontes incorporadas
+├── publicacao.zip        # Arquivos para enviar e extrair em public_html
 ├── README.md
 └── assets/
     ├── README.md         # Correspondência das oito imagens enviadas no chat
@@ -19,7 +21,7 @@ cmdtecnologia/
 
 ## Abrir no navegador
 
-Abra `index.html` com um navegador moderno. Todos os recursos necessários à página atual são locais; não há imports de módulos, chamadas a APIs ou downloads de fontes durante a execução. Uma conexão é necessária apenas para acessar o WhatsApp. Se o navegador da sua organização bloquear arquivos locais, use uma hospedagem ou um servidor estático.
+Para visualizar sem extrair pastas, baixe e abra `visualizacao.html` com um navegador moderno: todas as fontes, imagens e interações estão incorporadas nesse arquivo. Para editar o projeto, abra `index.html` com os demais arquivos na mesma pasta. Todos os recursos necessários à página atual são locais; não há imports de módulos, chamadas a APIs ou downloads de fontes durante a execução. Uma conexão é necessária apenas para acessar o WhatsApp. Se o navegador da sua organização bloquear arquivos locais, use uma hospedagem ou um servidor estático.
 
 Para desenvolvimento com servidor opcional:
 
@@ -30,17 +32,17 @@ python3 -m http.server 8080 --bind 127.0.0.1
 
 O servidor não é uma dependência de produção. Interrompa com `Ctrl+C` quando terminar.
 
-## Imagens e logomarca: etapa pendente
+## Imagens e logomarca
 
-As oito imagens apareceram na conversa, mas seus arquivos binários não foram disponibilizados no ambiente. Por isso, **os banners e logos originais ainda não estão incorporados**. O site usa uma rede vetorial decorativa no Hero e identificações em texto no lugar dos logos. Esses elementos temporários não são reproduções das marcas oficiais. A imagem `2.png`, já presente no repositório, está aplicada à seção Sobre.
+O logo original da CMD e os cinco logos de clientes recebidos em `Logos.zip` estão incorporados no cabeçalho, rodapé e seção Clientes. Os seis arquivos PNG foram copiados sem alterar seus bytes, cores ou transparência. As imagens também estão no HTML para aparecerem com JavaScript desativado. O código mantém textos alternativos e um fallback para falhas de carregamento.
 
-Para aplicar os arquivos originais:
+O logo A3 tem letras brancas e é exibido sobre fundo azul escuro. As margens transparentes dos arquivos são enquadradas pelo CSS sem distorção. O logotipo CMD permanece inteiro; nenhum filtro de cor é aplicado.
 
-1. Copie as imagens para `assets/`, seguindo a tabela em `assets/README.md`.
-2. No início de `script.js`, preencha os caminhos de `CMD_CONFIG.images`.
-3. Recarregue a página. O logo será aplicado ao cabeçalho e ao rodapé, os cinco logos aos clientes, e o banner será escolhido conforme a largura da tela.
+**Pendência:** os banners de computador e celular não vieram em `Logos.zip`. O Hero conserva uma rede vetorial decorativa até os dois arquivos serem enviados. A imagem `2.png`, já presente no repositório, continua na seção Sobre.
 
-Exemplo de configuração depois que os arquivos existirem:
+Para trocar um logo, substitua o respectivo arquivo em `assets/` preservando o nome. Para aplicar os banners, copie os originais para `assets/` e preencha `heroDesktop` e `heroMobile` em `CMD_CONFIG.images` no início de `script.js`. A tabela em `assets/README.md` identifica todos os arquivos.
+
+Configuração de imagens (os caminhos dos banners só devem ser ativados quando os arquivos existirem):
 
 ```js
 images: {
@@ -84,9 +86,9 @@ Instagram, Facebook e LinkedIn estão reservados no rodapé como texto sem links
 
 ## Publicar na Hostinger ou em hospedagem comum
 
-1. Confirme o WhatsApp e aplique os banners e logos originais antes de apresentar a versão como definitiva.
-2. No gerenciador de arquivos da hospedagem, abra a pasta pública do domínio (normalmente `public_html`). Faça backup de um site existente antes de substituir qualquer arquivo.
-3. Envie `index.html`, `style.css`, `script.js`, `2.png` e a pasta `assets/`, preservando os caminhos e as letras maiúsculas/minúsculas dos arquivos. Não envie a pasta `.git`. O README é documentação e não precisa ser publicado.
+1. Confirme o WhatsApp e aplique os banners originais antes de apresentar a versão como definitiva.
+2. Baixe `publicacao.zip`. No gerenciador de arquivos da hospedagem, abra a pasta pública do domínio (normalmente `public_html`). Faça backup de um site existente antes de substituir qualquer arquivo.
+3. Envie `publicacao.zip` e extraia diretamente nessa pasta. O ZIP contém `index.html`, `style.css`, `script.js`, `2.png` e a pasta `assets/` na raiz. Não exige uma subpasta nem contém arquivos do Git. Alternativamente, envie esses arquivos individualmente, preservando os caminhos. O README e `visualizacao.html` não precisam ser publicados.
 4. Ative HTTPS pelo painel da hospedagem e acesse o domínio no computador e no celular.
 5. Verifique as imagens, os links âncora e os dois destinos de WhatsApp. Depois de definir o domínio, atualize os metadados indicados acima.
 

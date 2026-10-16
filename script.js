@@ -1,25 +1,25 @@
 'use strict';
 
 /* CONFIGURAÇÃO EDITÁVEL
- * As imagens exibidas no chat não vieram como arquivos para o ambiente.
- * Depois de copiá-las para assets/, preencha os caminhos abaixo.
- * Campos vazios mantêm os fundos vetoriais e nomes em texto, sem simular logos oficiais.
+ * Logo CMD e cinco logos de clientes: originais recebidos em Logos.zip.
+ * Banners desktop/mobile: preencher os caminhos quando os arquivos forem enviados.
+ * Campos vazios preservam o fundo vetorial decorativo do Hero.
  * Foto 1 = heroDesktop; foto 2 = logo; fotos 3–7 = clientes; foto 8 = heroMobile.
  */
 const CMD_CONFIG = {
   whatsapp: '553138681251', // Confirmar se o telefone comercial possui WhatsApp ativo.
   message: 'Olá! Conheci a CMD Tecnologia & Infraestrutura pelo site e gostaria de solicitar um orçamento para um projeto.',
   images: {
-    logo: '',              // 'assets/logo-cmd.png'
+    logo: 'assets/logo-cmd.png',
     heroDesktop: '',       // 'assets/hero-desktop.png'
     heroMobile: '',        // 'assets/hero-mobile.png'
     favicon: '',           // Preencher somente com favicon oficial disponível.
     clients: {
-      bizz: '',            // 'assets/cliente-bizz.png'
-      'anglo-american': '', // 'assets/cliente-anglo-american.png'
-      north: '',           // 'assets/cliente-north.png'
-      komatsu: '',         // 'assets/cliente-komatsu.png'
-      a3: ''               // 'assets/cliente-a3.png'
+      bizz: 'assets/cliente-bizz.png',
+      'anglo-american': 'assets/cliente-anglo-american.png',
+      north: 'assets/cliente-north.png',
+      komatsu: 'assets/cliente-komatsu.png',
+      a3: 'assets/cliente-a3.png',
     }
   }
 };
@@ -42,16 +42,20 @@ const CMD_CONFIG = {
   // O texto alternativo/fallback permanece se um arquivo configurado falhar.
   function applyImage(parent, path, alt, width, height, fallback) {
     if (!path) return;
-    const image = new Image(width, height);
+    const existing = parent.querySelector('img');
+    const image = existing || new Image(width, height);
     image.alt = alt;
-    image.hidden = true;
+    if (!existing) image.hidden = true;
     image.decoding = 'async';
     image.addEventListener('load', () => {
       image.hidden = false;
       if (fallback) fallback.hidden = true;
     }, { once: true });
-    image.addEventListener('error', () => image.remove(), { once: true });
-    parent.append(image);
+    image.addEventListener('error', () => {
+      image.remove();
+      if (fallback) fallback.hidden = false;
+    }, { once: true });
+    if (!existing) parent.append(image);
     image.src = path;
   }
 
@@ -60,7 +64,7 @@ const CMD_CONFIG = {
   });
   Object.entries(CMD_CONFIG.images.clients).forEach(([key, path]) => {
     const fallback = document.querySelector(`[data-client-fallback="${key}"]`);
-    applyImage(fallback.parentElement, path, fallback.textContent, 500, 500, fallback);
+    if (fallback) applyImage(fallback.parentElement, path, fallback.textContent, 500, 500, fallback);
   });
 
   const heroMedia = document.querySelector('#hero-media');
